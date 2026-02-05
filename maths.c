@@ -23,6 +23,21 @@ static void unpack_25519(field_element_t out, const uint8_t* in) {
     out[15] &= 0x7fff;
 }
 
+// out = a + b
 static void field_add(field_element_t out, field_element_t a, field_element_t b) {
-    //
+    for(uint8_t i = 0; i < 16; i++) {
+        out[i] = a[i] + b[i];
+    }
+}
+
+// out = a - b
+static void field_sub(field_element_t out, field_element_t a, field_element_t b) {
+    for(uint8_t i = 0; i < 16; i++) {
+        out[i] = a[i] - b[i];
+    }
+}
+
+// out = a * b
+static void field_mul(field_element_t out, field_element_t a, field_element_t b) {
+    // 
 }
