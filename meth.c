@@ -65,3 +65,17 @@ static void field_mul(field_element out, const field_element a, const field_elem
     carry_25519(out);
     carry_25519(out);
 }
+
+static void field_inverse(field_element out, const field_element in) {
+    field_element c;
+    uint8_t i;
+    for(i = 0; i < 16; i++) {
+        c[i] = in[i];
+    }
+    for(i = 253; i >= 0; i--) {
+        field_mul(c, c, c);
+        if((i != 2) && (i != 4)) {
+            field_mul(c, c, in);
+        }
+    }
+}
